@@ -9,7 +9,7 @@ def portfolio_cost(filename):
             try:
                 s += int(row[1]) * float(row[2])
             except ValueError:
-                print(f"Couldn't calculate line: {line}")
+                print(f"Couldn't calculate line: {line}. Wrong or missing data.")
     return s
 
 cost = portfolio_cost('Data/portfolio.csv')
