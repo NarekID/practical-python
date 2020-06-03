@@ -1,10 +1,16 @@
 # pcost.py
 #
 # Exercise 1.27
-f = open('Data/portfolio.csv', 'r')
-next(f)
-s = 0
-for line in f:
-    row = line.strip().split(',')
-    s += int(row[1]) * float(row[2])
-print(f'Total cost: {s}')
+def portfolio_cost(filename):
+    s = 0
+    with open(filename, 'r') as f:
+        for line in f:
+            row = line.split(',')
+            try:
+                s += int(row[1]) * float(row[2])
+            except ValueError:
+                print(f"Couldn't calculate line: {line}")
+    return s
+
+cost = portfolio_cost('Data/portfolio.csv')
+print(f'Total cost: {cost}')
