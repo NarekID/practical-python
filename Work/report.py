@@ -35,7 +35,7 @@ def read_prices(filename):
 def make_report(portfolio, prices):
     changes = []
     for stock in portfolio:
-        changes.append((stock['name'], stock['shares'], prices[stock['name']], prices[stock['name']] - stock['price']))
+        changes.append((stock['name'], stock['shares'], round(prices[stock['name']], 2), prices[stock['name']] - stock['price']))
     return changes
 
 
@@ -57,8 +57,8 @@ print(f'Current value: {current_value}')
 print(f'Gain: {total_value:0.2f}' if total_value > 0 else f'Loss: {-total_value:0.2f}')
 
 headers = ('Name', 'Shares', 'Price', 'Change')
+report = make_report(portfolio, prices)
 print('%10s %10s %10s %10s' % headers)
 print(('-' * 10 + ' ') * 3 + '-' * 10)
-report = make_report(portfolio, prices)
 for name, shares, price, change in report:
-    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
+    print(f'{name:>10s} {shares:>10d} {"$" + str(price):>10s} {change:>10.2f}')
