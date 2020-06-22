@@ -1,4 +1,3 @@
-
 # report.py
 #
 # Exercise 2.4
@@ -57,6 +56,9 @@ print(f'Current value: {current_value}')
 
 print(f'Gain: {total_value:0.2f}' if total_value > 0 else f'Loss: {-total_value:0.2f}')
 
+headers = ('Name', 'Shares', 'Price', 'Change')
+print('%10s %10s %10s %10s' % headers)
+print(('-' * 10 + ' ') * 3 + '-' * 10)
 report = make_report(portfolio, prices)
 for name, shares, price, change in report:
     print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
