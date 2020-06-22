@@ -1,3 +1,4 @@
+
 # report.py
 #
 # Exercise 2.4
@@ -32,6 +33,13 @@ def read_prices(filename):
     return prices
 
 
+def make_report(portfolio, prices):
+    changes = []
+    for stock in portfolio:
+        changes.append((stock['name'], stock['shares'], prices[stock['name']], prices[stock['name']] - stock['price']))
+    return changes
+
+
 portfolio = read_portfolio('Data/portfolio.csv')
 prices = read_prices('Data/prices.csv')
 
@@ -48,3 +56,7 @@ print(f'Old value: {portfolio_value}')
 print(f'Current value: {current_value}')
 
 print(f'Gain: {total_value:0.2f}' if total_value > 0 else f'Loss: {-total_value:0.2f}')
+
+report = make_report(portfolio, prices)
+for name, shares, price, change in report:
+    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
